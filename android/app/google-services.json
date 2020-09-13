@@ -30,6 +30,13 @@
             {
               "client_id": "314904731251-s332p9p6bsbk0vk2asn6mpnrv61oqfao.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "314904731251-os01vv41dput5n7lduqif1uilupgc72g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "info.kshun.pkccapp"
+              }
             }
           ]
         }
