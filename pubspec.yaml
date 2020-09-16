@@ -23,6 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  provider:
+  state_notifier: ^0.6.0
+  flutter_state_notifier: ^0.6.1
+  freezed_annotation:
+
   firebase_core: "0.5.0"
 
   # The following adds the Cupertino Icons font to your application.
@@ -32,6 +38,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  freezed:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
