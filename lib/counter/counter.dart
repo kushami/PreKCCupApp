@@ -2,7 +2,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-part 'counter_store.freezed.dart';
+part 'counter.freezed.dart';
+
+typedef StateUpdate<T> = T Function(T prev);
 
 @freezed
 abstract class CounterState with _$CounterState {
@@ -17,6 +19,7 @@ class CounterStore extends StateNotifier<CounterState> {
 
   final CounterRepository counterRepository;
 
+  // TODO: 以下は Behavior なので、ここで持つべきではない？
   void increment() {
     state = state.copyWith(count: state.count + 1);
   }
