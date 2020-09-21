@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:PreKCCupApp/counter/counter.dart';
+import './counter.dart';
 
 class CounterView extends StatelessWidget {
   @override
@@ -17,15 +17,15 @@ class CounterView extends StatelessWidget {
                 context.select<CounterState, int>((state) => state.count).toString(),
               ),
               FlatButton(
-                onPressed: () => context.read<CounterStore>().fetchNum(),
+                onPressed: () => context.read<CounterController>().fetchNum(),
                 child: Text('fetchNum'),
               ),
               FlatButton(
-                onPressed: () => context.read<CounterStore>().enable(),
+                onPressed: () => context.read<CounterController>().enable(),
                 child: Text('enable'),
               ),
               FlatButton(
-                onPressed: () => context.read<CounterStore>().disable(),
+                onPressed: () => context.read<CounterController>().disable(),
                 child: Text('disable'),
               ),
               Text('Status: ' + context.select<CounterState, bool>((state) => state.isEnabled).toString())
@@ -50,7 +50,7 @@ class CounterView extends StatelessWidget {
         onTap: null,
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.read<CounterStore>().increment(),
+        onPressed: () => context.read<CounterController>().increment(),
         label: Text('1'),
         icon: Icon(Icons.add),
       ),

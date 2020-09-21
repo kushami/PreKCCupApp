@@ -4,8 +4,6 @@ import 'package:state_notifier/state_notifier.dart';
 
 part 'counter.freezed.dart';
 
-typedef StateUpdate<T> = T Function(T prev);
-
 @freezed
 abstract class CounterState with _$CounterState {
   const factory CounterState({
@@ -14,12 +12,12 @@ abstract class CounterState with _$CounterState {
   }) = _CounterState;
 }
 
-class CounterStore extends StateNotifier<CounterState> {
-  CounterStore(this.counterRepository) : super(const CounterState());
+class CounterController extends StateNotifier<CounterState> with UsesCounterRepository {
+  CounterController() : super(const CounterState());
 
-  final CounterRepository counterRepository;
+  final counterRepository = MixInCounterRepository();
 
-  // TODO: 以下は Behavior なので、ここで持つべきではない？
+  // 以下が Behavior にあたるアレ
   void increment() {
     state = state.copyWith(count: state.count + 1);
   }
@@ -31,16 +29,28 @@ class CounterStore extends StateNotifier<CounterState> {
   }
 
   void disable() {
-    state = state.copyWith(isEnabled: false);
+    if (state.isEnabled) {
+      state = state.copyWith(isEnabled: false);
+    }
   }
 
   void enable() {
-    state = state.copyWith(isEnabled: true);
+    if (!state.isEnabled) {
+      state = state.copyWith(isEnabled: true);
+    }
   }
 }
 
-class CounterRepository {
+abstract class CounterRepository {
+  Future<int> getNumber();
+}
+
+class MixInCounterRepository implements CounterRepository {
   Future<int> getNumber() {
     return new Future<int>.value(0);
   }
+}
+
+mixin UsesCounterRepository {
+  CounterRepository counterRepository;
 }

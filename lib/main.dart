@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
-import 'package:PreKCCupApp/counter/counter.dart';
-import 'package:PreKCCupApp/counter/counter_view.dart';
+import './counter/counter.dart';
+import './counter/counter_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,11 +17,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: StateNotifierProvider<CounterStore, CounterState>(
-        create: (_) => CounterStore(CounterRepository()),
+      home: StateNotifierProvider<CounterController, CounterState>(
+        create: (_) => CounterController(),
         child: CounterView(),
       ),
     );
   }
 }
-
