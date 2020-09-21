@@ -15,6 +15,7 @@ abstract class CounterState with _$CounterState {
 class CounterController extends StateNotifier<CounterState> with UsesCounterRepository {
   CounterController() : super(const CounterState());
 
+  @override
   final counterRepository = MixInCounterRepository();
 
   // 以下が Behavior にあたるアレ
@@ -46,8 +47,9 @@ abstract class CounterRepository {
 }
 
 class MixInCounterRepository implements CounterRepository {
+  @override
   Future<int> getNumber() {
-    return new Future<int>.value(0);
+    return Future<int>.value(0);
   }
 }
 
