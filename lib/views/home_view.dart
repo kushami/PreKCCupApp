@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'example_view.dart';
+import 'example_signin_view.dart';
 import '../controllers/view_controller/view_controller.dart';
 
 class HomeView extends StatelessWidget {
   final List<Widget> _pageWidgets = [
-    ExampleView(color:Colors.pinkAccent, title:'Home Page'),
+    SignInView(),
     ExampleView(color:Colors.orange, title:'戦績入力とか'),
     ExampleView(color:Colors.blue, title:'アカウント'),
   ];
