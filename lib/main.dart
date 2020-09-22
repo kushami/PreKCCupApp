@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
 
 import 'views/home_view.dart';
 import 'controllers/view_controller/view_controller.dart';
@@ -17,10 +18,14 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: StateNotifierProvider<ViewController, PageState>(
-        create: (_) => ViewController(),
+      home: MultiProvider(
+        providers: [
+          StateNotifierProvider<ViewController, PageState>(
+            create: (_) => ViewController(),
+          ),
+        ],
         child: HomeView(),
-      ),
+      )
     );
   }
 }
