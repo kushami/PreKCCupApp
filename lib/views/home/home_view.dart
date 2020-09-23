@@ -27,8 +27,6 @@ class HomeView extends StatelessWidget {
 }
 
 class PlatformInfoCard extends StatelessWidget {
-  PlatformInfoCard();
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -48,8 +46,6 @@ class PlatformInfoCard extends StatelessWidget {
 }
 
 class UserAccountCard extends StatelessWidget {
-  UserAccountCard();
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -63,7 +59,7 @@ class UserAccountCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8.0),
             alignment: Alignment.topCenter,
-            child: context.select<AuthState, User>((state) => state.user) != null
+            child: (context.select<AuthState, User>((state) => state.user) != null)
               ? RaisedButton(
                   child: const Text('Sign Out'),
                   shape: OutlineInputBorder(
@@ -77,12 +73,6 @@ class UserAccountCard extends StatelessWidget {
                   onPressed: () async => context.read<AuthController>().handleSignIn(),
                 ),
           ),
-          /*
-          RaisedButton(
-            child: Text('test'),
-            onPressed: () => context.read<AuthController>().test()),
-
-           */
         ],
       ),
     );

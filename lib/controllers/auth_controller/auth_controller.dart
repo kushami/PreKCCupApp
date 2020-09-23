@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../models/auth/auth_state.dart';
 
@@ -58,8 +59,13 @@ class MixInAuthRepository implements AuthRepository {
 
       return await _auth.signInWithPopup(gp);
     } else {
-      // TODO: スマートフォンアプリだと動かないよ
-      return await Future<UserCredential>.value(null);
+      final googleUser = await GoogleSignIn().signIn();
+      final googleAuth = await googleUser.authentication;
+      final GoogleAuthCredential googleAuthCredential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      return _auth.signInWithCredential(googleAuthCredential);
     }
   }
 

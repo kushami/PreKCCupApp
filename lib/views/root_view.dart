@@ -10,7 +10,7 @@ class RootView extends StatelessWidget {
     HomeView(),
     ExampleView(color:Colors.orange, title:'戦績入力とか'),
     ExampleView(color:Colors.blue, title:'アカウント'),
-    ExampleView(color:Colors.amber, title:'利用規約とかアプリについてとか'),
+    ExampleView(color:Colors.lightGreen, title:'利用規約とかアプリについてとか'),
   ];
 
   @override
