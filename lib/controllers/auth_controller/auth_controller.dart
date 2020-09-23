@@ -4,26 +4,38 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../models/auth/auth_state.dart';
 
-class AuthController extends StateNotifier<AuthState> with UsesAuthRepository {
+class AuthController extends StateNotifier<AuthState> with LocatorMixin, UsesAuthRepository {
   AuthController(): super(const AuthState());
 
   @override
   final authRepository = MixInAuthRepository();
 
+  @override
+  void initState() {
+    super.initState();
+    _watchAuthState();
+  }
+
+  void _watchAuthState() {
+    authRepository.authStateChanges()
+      .listen((User u) {
+        state = state.copyWith(user: u);
+      });
+  }
+
   void handleSignIn() async {
-    await authRepository.signIn()
-        .then((cred) => state = state.copyWith(user: cred.user));
+    await authRepository.signIn();
   }
 
   void handleSignOut() async {
-    await authRepository.signOut()
-        .then((_) => state = state.copyWith(user: null));
+    await authRepository.signOut();
   }
 }
 
 abstract class AuthRepository {
   Future<UserCredential> signIn();
   Future<void> signOut();
+  Stream<User> authStateChanges();
 }
 
 mixin UsesAuthRepository {
@@ -33,6 +45,12 @@ mixin UsesAuthRepository {
 class MixInAuthRepository implements AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  MixInAuthRepository() {
+    if (kIsWeb) {
+      _auth.setPersistence(Persistence.NONE);
+    }
+  }
+
   @override
   Future<UserCredential> signIn() async {
     if (kIsWeb) {
@@ -40,6 +58,7 @@ class MixInAuthRepository implements AuthRepository {
 
       return await _auth.signInWithPopup(gp);
     } else {
+      // TODO: スマートフォンアプリだと動かないよ
       return await Future<UserCredential>.value(null);
     }
   }
@@ -47,5 +66,10 @@ class MixInAuthRepository implements AuthRepository {
   @override
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  @override
+  Stream<User> authStateChanges() {
+    return _auth.authStateChanges();
   }
 }

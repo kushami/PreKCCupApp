@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'home/home_view.dart';
 import 'example_view.dart';
-import 'example_signin_view.dart';
 import '../controllers/view_controller/view_controller.dart';
 
 class RootView extends StatelessWidget {
   final List<Widget> _pageWidgets = [
-    SignInView(),
+    HomeView(),
     ExampleView(color:Colors.orange, title:'戦績入力とか'),
     ExampleView(color:Colors.blue, title:'アカウント'),
     ExampleView(color:Colors.amber, title:'利用規約とかアプリについてとか'),
