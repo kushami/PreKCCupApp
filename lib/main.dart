@@ -6,7 +6,7 @@ import 'models/auth/auth_state.dart';
 import 'controllers/auth_controller/auth_controller.dart';
 import 'controllers/view_controller/view_controller.dart';
 
-import 'views/home_view.dart';
+import 'views/root_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             create: (_) => AuthController()
           ),
         ],
-        child: HomeView(),
+        child: RootView(),
       )
     );
   }

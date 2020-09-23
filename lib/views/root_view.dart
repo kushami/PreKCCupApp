@@ -5,7 +5,7 @@ import 'example_view.dart';
 import 'example_signin_view.dart';
 import '../controllers/view_controller/view_controller.dart';
 
-class HomeView extends StatelessWidget {
+class RootView extends StatelessWidget {
   final List<Widget> _pageWidgets = [
     SignInView(),
     ExampleView(color:Colors.orange, title:'戦績入力とか'),
