@@ -59,13 +59,30 @@ class UserAccountCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8.0),
             alignment: Alignment.topCenter,
-            child: (context.select<AuthState, User>((state) => state.user) != null)
-              ? RaisedButton(
-                  child: const Text('Sign Out'),
-                  shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  onPressed: () async => context.read<AuthController>().handleSignOut(),
+            child: (context.select<AuthState, User>((s) => s.user) != null)
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Theme.of(context).backgroundColor,
+                      backgroundImage: NetworkImage(
+                          context.select<AuthState, User>((s) => s.user).photoURL
+                      ),
+                      radius: 30.0,
+                    ),
+                    Center(
+                      child: Text(
+                        'Name: ' + context.select<AuthState, User>((s) => s.user).displayName
+                      ),
+                    ),
+                    RaisedButton(
+                      child: const Text('Sign Out'),
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      onPressed: () async => context.read<AuthController>().handleSignOut(),
+                    ),
+                  ],
                 )
               : SignInButton(
                   Buttons.GoogleDark,
