@@ -86,7 +86,7 @@ class UserAccountCard extends StatelessWidget {
                 )
               : SignInButton(
                   Buttons.GoogleDark,
-                  text: 'Sign In',
+                  text: 'Google Sign In',
                   onPressed: () async => context.read<AuthController>().handleSignIn(),
                 ),
           ),
