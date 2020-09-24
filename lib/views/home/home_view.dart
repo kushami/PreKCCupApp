@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/button_list.dart';
 
-import '../../models/auth/auth_state.dart';
+import '../../models/auth_state/auth_state.dart';
 import '../../controllers/auth_controller/auth_controller.dart';
 
 

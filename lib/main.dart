@@ -3,11 +3,12 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'models/auth/auth_state.dart';
+import 'views/root_view.dart';
+import 'models/auth_state/auth_state.dart';
+import 'models/view_state/view_state.dart';
 import 'controllers/auth_controller/auth_controller.dart';
 import 'controllers/view_controller/view_controller.dart';
-
-import 'views/root_view.dart';
+import 'repositories/auth_repository/auth_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,17 +26,20 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MultiProvider(
-        providers: [
-          StateNotifierProvider<ViewController, PageState>(
-            create: (_) => ViewController(),
-          ),
-          StateNotifierProvider<AuthController, AuthState>(
-            create: (_) => AuthController()
-          ),
-        ],
-        child: RootView(),
-      )
+      home: Provider(
+        create: (_) => AuthRepository(),
+        child: MultiProvider(
+          providers: [
+            StateNotifierProvider<AuthController, AuthState>(
+              create: (context) => AuthController(context.read)
+            ),
+            StateNotifierProvider<ViewController, PageState>(
+              create: (context) => ViewController(),
+            )
+          ],
+          child: RootView(),
+        ),
+      ),
     );
   }
 }

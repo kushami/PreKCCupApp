@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'home/home_view.dart';
-import 'example_view.dart';
+import 'example/example_view.dart';
+import '../models/view_state/view_state.dart';
 import '../controllers/view_controller/view_controller.dart';
 
 class RootView extends StatelessWidget {
