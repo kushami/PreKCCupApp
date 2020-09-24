@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Pre KC Cup App',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         brightness: Brightness.dark,
