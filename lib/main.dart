@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-import 'views/home_view.dart';
+import 'models/auth/auth_state.dart';
+import 'controllers/auth_controller/auth_controller.dart';
 import 'controllers/view_controller/view_controller.dart';
 
-void main() {
+import 'views/root_view.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -23,8 +29,11 @@ class MyApp extends StatelessWidget {
           StateNotifierProvider<ViewController, PageState>(
             create: (_) => ViewController(),
           ),
+          StateNotifierProvider<AuthController, AuthState>(
+            create: (_) => AuthController()
+          ),
         ],
-        child: HomeView(),
+        child: RootView(),
       )
     );
   }
