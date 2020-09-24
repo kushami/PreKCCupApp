@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         child: MultiProvider(
           providers: [
             StateNotifierProvider<AuthController, AuthState>(
-              create: (context) => AuthController(context.read)
+              create: (context) => AuthController()
             ),
             StateNotifierProvider<ViewController, PageState>(
               create: (context) => ViewController(),

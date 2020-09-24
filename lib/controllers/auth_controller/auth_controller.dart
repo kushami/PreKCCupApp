@@ -5,10 +5,9 @@ import '../../models/auth_state/auth_state.dart';
 import '../../repositories/auth_repository/auth_repository.dart';
 
 class AuthController extends StateNotifier<AuthState> with LocatorMixin {
-  AuthController(this.read): super(const AuthState());
+  AuthController(): super(const AuthState());
 
-  @override
-  final Locator read;
+  AuthRepository get _authRepository => read();
 
   @override
   void initState() {
@@ -17,17 +16,17 @@ class AuthController extends StateNotifier<AuthState> with LocatorMixin {
   }
 
   void _watchAuthState() {
-    read<AuthRepository>().authStateChanges()
+    _authRepository.authStateChanges()
       .listen((User u) {
         state = state.copyWith(user: u);
       });
   }
 
   void handleSignIn() async {
-    await read<AuthRepository>().signIn();
+    await _authRepository.signIn();
   }
 
   void handleSignOut() async {
-    await read<AuthRepository>().signOut();
+    await _authRepository.signOut();
   }
 }
