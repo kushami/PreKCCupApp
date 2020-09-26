@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class RootView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.select<PageState, bool>((s) => s.isLoading)
+    return !kIsWeb && context.select<PageState, bool>((s) => s.isLoading)
         ? SplashScreen()
         : Scaffold(
             body: _pageWidgets[

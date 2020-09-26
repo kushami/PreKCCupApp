@@ -12,10 +12,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeMyApp();
+    _initializePhoneApp();
   }
 
-  Future<void> _initializeMyApp() async {
+  Future<void> _initializePhoneApp() async {
     await Firebase.initializeApp();
   }
 
