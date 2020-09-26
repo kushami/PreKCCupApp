@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     _initializeMyApp();
-    Timer(Duration(seconds: 3), () => Navigator.pushNamed(context, '/top'));
   }
 
   Future<void> _initializeMyApp() async {

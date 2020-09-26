@@ -14,8 +14,9 @@ class _$PageStateTearOff {
   const _$PageStateTearOff();
 
 // ignore: unused_element
-  _PageState call({int currentIndex = 0}) {
+  _PageState call({bool isLoading = true, int currentIndex = 0}) {
     return _PageState(
+      isLoading: isLoading,
       currentIndex: currentIndex,
     );
   }
@@ -27,6 +28,7 @@ const $PageState = _$PageStateTearOff();
 
 /// @nodoc
 mixin _$PageState {
+  bool get isLoading;
   int get currentIndex;
 
   $PageStateCopyWith<PageState> get copyWith;
@@ -36,7 +38,7 @@ mixin _$PageState {
 abstract class $PageStateCopyWith<$Res> {
   factory $PageStateCopyWith(PageState value, $Res Function(PageState) then) =
       _$PageStateCopyWithImpl<$Res>;
-  $Res call({int currentIndex});
+  $Res call({bool isLoading, int currentIndex});
 }
 
 /// @nodoc
@@ -49,9 +51,11 @@ class _$PageStateCopyWithImpl<$Res> implements $PageStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object isLoading = freezed,
     Object currentIndex = freezed,
   }) {
     return _then(_value.copyWith(
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       currentIndex:
           currentIndex == freezed ? _value.currentIndex : currentIndex as int,
     ));
@@ -64,7 +68,7 @@ abstract class _$PageStateCopyWith<$Res> implements $PageStateCopyWith<$Res> {
           _PageState value, $Res Function(_PageState) then) =
       __$PageStateCopyWithImpl<$Res>;
   @override
-  $Res call({int currentIndex});
+  $Res call({bool isLoading, int currentIndex});
 }
 
 /// @nodoc
@@ -78,9 +82,11 @@ class __$PageStateCopyWithImpl<$Res> extends _$PageStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object isLoading = freezed,
     Object currentIndex = freezed,
   }) {
     return _then(_PageState(
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       currentIndex:
           currentIndex == freezed ? _value.currentIndex : currentIndex as int,
     ));
@@ -89,15 +95,20 @@ class __$PageStateCopyWithImpl<$Res> extends _$PageStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_PageState with DiagnosticableTreeMixin implements _PageState {
-  const _$_PageState({this.currentIndex = 0}) : assert(currentIndex != null);
+  const _$_PageState({this.isLoading = true, this.currentIndex = 0})
+      : assert(isLoading != null),
+        assert(currentIndex != null);
 
+  @JsonKey(defaultValue: true)
+  @override
+  final bool isLoading;
   @JsonKey(defaultValue: 0)
   @override
   final int currentIndex;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PageState(currentIndex: $currentIndex)';
+    return 'PageState(isLoading: $isLoading, currentIndex: $currentIndex)';
   }
 
   @override
@@ -105,6 +116,7 @@ class _$_PageState with DiagnosticableTreeMixin implements _PageState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PageState'))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
       ..add(DiagnosticsProperty('currentIndex', currentIndex));
   }
 
@@ -112,6 +124,9 @@ class _$_PageState with DiagnosticableTreeMixin implements _PageState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PageState &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)) &&
             (identical(other.currentIndex, currentIndex) ||
                 const DeepCollectionEquality()
                     .equals(other.currentIndex, currentIndex)));
@@ -119,7 +134,9 @@ class _$_PageState with DiagnosticableTreeMixin implements _PageState {
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(currentIndex);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(currentIndex);
 
   @override
   _$PageStateCopyWith<_PageState> get copyWith =>
@@ -127,8 +144,10 @@ class _$_PageState with DiagnosticableTreeMixin implements _PageState {
 }
 
 abstract class _PageState implements PageState {
-  const factory _PageState({int currentIndex}) = _$_PageState;
+  const factory _PageState({bool isLoading, int currentIndex}) = _$_PageState;
 
+  @override
+  bool get isLoading;
   @override
   int get currentIndex;
   @override

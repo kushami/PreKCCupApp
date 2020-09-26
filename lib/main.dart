@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
-import 'views/splash/splash_view.dart';
 import 'views/root_view.dart';
 import 'models/view_state/view_state.dart';
 import 'models/auth_state/auth_state.dart';
@@ -16,30 +15,27 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pre KC Cup App',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        brightness: Brightness.dark,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: SplashScreen(),
-      routes: <String, WidgetBuilder> {
-        '/top': (BuildContext context) => Provider(
-          create: (_) => AuthRepository(),
-          child: MultiProvider(
-            providers: [
-              StateNotifierProvider<AuthController, AuthState>(
-                  create: (context) => AuthController()
-              ),
-              StateNotifierProvider<ViewController, PageState>(
-                create: (context) => ViewController(),
-              )
-            ],
-            child: RootView(),
+    return Provider(
+      create: (_) => AuthRepository(),
+      child: MultiProvider(
+        providers: [
+          StateNotifierProvider<AuthController, AuthState>(
+            create: (context) => AuthController()
           ),
+          StateNotifierProvider<ViewController, PageState>(
+            create: (context) => ViewController(),
+          )
+        ],
+        child: MaterialApp(
+          title: 'Pre KC Cup App',
+          theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            brightness: Brightness.dark,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: RootView(),
         ),
-      },
+      ),
     );
   }
 }
