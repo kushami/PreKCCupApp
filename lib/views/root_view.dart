@@ -17,9 +17,6 @@ class RootView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Pre KC Cup App'),
-      ),
       body: _pageWidgets[context.select<PageState, int>((state) => state.currentIndex)],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
