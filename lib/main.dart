@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
+// UI
+import 'theme/theme.dart';
 import 'views/root_view.dart';
+import 'views/example/under_development.dart';
+
+// States & Controllers
 import 'models/view_state/view_state.dart';
 import 'models/auth_state/auth_state.dart';
 import 'controllers/view_controller/view_controller.dart';
 import 'controllers/auth_controller/auth_controller.dart';
+
+// Repositories
 import 'repositories/auth_repository/auth_repository.dart';
 
 
@@ -20,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           StateNotifierProvider<AuthController, AuthState>(
-            create: (context) => AuthController()
+              create: (context) => AuthController()
           ),
           StateNotifierProvider<ViewController, PageState>(
             create: (context) => ViewController(),
@@ -28,12 +35,12 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Pre KC Cup App',
-          theme: ThemeData(
-            primarySwatch: Colors.blueGrey,
-            brightness: Brightness.dark,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
+          theme: mainTheme,
           home: RootView(),
+          routes: <String, WidgetBuilder>{},
+          onUnknownRoute: (RouteSettings rs) => MaterialPageRoute(
+            builder: (context) => UnderDevelopment(),
+          ),
         ),
       ),
     );
