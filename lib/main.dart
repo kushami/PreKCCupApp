@@ -16,7 +16,6 @@ import 'controllers/auth_controller/auth_controller.dart';
 // Repositories
 import 'repositories/auth_repository/auth_repository.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -27,8 +26,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           StateNotifierProvider<AuthController, AuthState>(
-              create: (context) => AuthController()
-          ),
+              create: (context) => AuthController()),
           StateNotifierProvider<ViewController, PageState>(
             create: (context) => ViewController(),
           )
