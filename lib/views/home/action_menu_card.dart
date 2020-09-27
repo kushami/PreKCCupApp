@@ -18,7 +18,8 @@ class ActionMenuCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       InkWell(
-                        onTap: () => print('Under Development'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/sub_page'),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +27,7 @@ class ActionMenuCard extends StatelessWidget {
                             CircleAvatar(
                               radius: 30.0,
                               backgroundColor:
-                              Theme.of(context).colorScheme.background,
+                                  Theme.of(context).colorScheme.background,
                               child: Icon(
                                 Icons.face_retouching_natural,
                                 size: 45.0,
@@ -49,7 +50,8 @@ class ActionMenuCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       InkWell(
-                        onTap: () => print('Under Development'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/sub_page'),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,7 +59,7 @@ class ActionMenuCard extends StatelessWidget {
                             CircleAvatar(
                               radius: 30.0,
                               backgroundColor:
-                              Theme.of(context).colorScheme.background,
+                                  Theme.of(context).colorScheme.background,
                               child: Icon(
                                 Icons.color_lens,
                                 size: 45.0,

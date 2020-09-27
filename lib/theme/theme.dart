@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'color.dart';
 
-
 final ThemeData mainTheme = _buildTheme();
 
 ThemeData _buildTheme() {

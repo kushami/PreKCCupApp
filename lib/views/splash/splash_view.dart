@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -48,7 +47,9 @@ class _SplashScreenState extends State<SplashScreen> {
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
-                        Padding(padding: EdgeInsets.only(top: 30.0),),
+                        Padding(
+                          padding: EdgeInsets.only(top: 30.0),
+                        ),
                         Text(
                           'Pre KC Cup App',
                           style: TextStyle(
@@ -59,8 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
               Expanded(
                 flex: 1,
                 child: Column(

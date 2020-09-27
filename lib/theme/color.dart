@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 const Color oxfordBlue = Color(0xFF0B132B);
 const Color spaceCadet = Color(0xFF1C2541);
 const Color independence = Color(0xFF3A506B);

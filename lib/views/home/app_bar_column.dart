@@ -58,7 +58,7 @@ class AppBarColumn extends StatelessWidget {
                   }
                 },
                 itemBuilder: (BuildContext context) {
-                  return ['others', 'Sign Out'].map((String s) {
+                  return ['Sign Out'].map((String s) {
                     return PopupMenuItem(
                       child: Text(s),
                       value: s,
