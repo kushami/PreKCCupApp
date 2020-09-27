@@ -1,22 +1,12 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter_signin_button/button_list.dart';
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
+import '../../controllers/auth_controller/auth_controller.dart';
 
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _initializePhoneApp();
-  }
-
-  Future<void> _initializePhoneApp() async {
-    await Firebase.initializeApp();
-  }
+class SigninView extends StatelessWidget {
+  SigninView();
 
   @override
   Widget build(BuildContext context) {
@@ -64,20 +54,14 @@ class _SplashScreenState extends State<SplashScreen> {
               Expanded(
                 flex: 1,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    CircularProgressIndicator(),
-                    Padding(padding: EdgeInsets.only(top: 10.0)),
-                    Text(
-                      'Loading ...',
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    )
+                    SignInButton(
+                      Buttons.Google,
+                      text: 'Google Sign In',
+                      onPressed: () async =>
+                          context.read<AuthController>().handleSignIn(),
+                    ),
                   ],
                 ),
               )
