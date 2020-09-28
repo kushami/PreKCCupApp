@@ -54,6 +54,10 @@ class UnderDevelopment extends StatelessWidget {
       appBar: AppBar(
         elevation: 4.0,
         title: Text(title),
+        primary: true,
+        iconTheme: IconThemeData().copyWith(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
       ),
       body: _bodyData(),
     );
