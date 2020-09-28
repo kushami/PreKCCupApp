@@ -1,23 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _initializePhoneApp();
-  }
-
-  Future<void> _initializePhoneApp() async {
-    await Firebase.initializeApp();
-  }
-
+class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
