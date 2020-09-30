@@ -45,6 +45,11 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder(
         future: Firebase.initializeApp(),
         builder: (context, snapshot) {
+          /* TODO: エラーハンドリング
+          if (snapshot.hasError) {
+            return SomethingWentWrong();
+          }
+           */
           if (snapshot.connectionState == ConnectionState.done &&
               context.select<ViewState, bool>((s) => !s.isLoading)) {
             return RootView();
