@@ -7,7 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'theme/theme.dart';
 import 'views/root_view.dart';
 import 'views/splash/splash_view.dart';
-import 'views/example/under_development.dart';
+import 'views/common_items/widgets/under_development.dart';
 
 // States & Controllers
 import 'models/view_state/view_state.dart';
