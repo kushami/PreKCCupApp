@@ -23,7 +23,7 @@ class AppBarColumn extends StatelessWidget {
                 radius: 25.0,
               ),
               SizedBox(
-                width: 3.5,
+                width: 5.0,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,

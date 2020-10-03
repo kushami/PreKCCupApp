@@ -3,13 +3,9 @@ import 'package:state_notifier/state_notifier.dart';
 
 import '../../models/view_state/view_state.dart';
 
-class ViewController extends StateNotifier<PageState> {
-  ViewController(): super(const PageState()) {
-    Timer(Duration(seconds: 3), () => _loaded());
-  }
-  
-  void onItemTapped(int index) {
-    state = state.copyWith(currentIndex: index);
+class ViewController extends StateNotifier<ViewState> {
+  ViewController() : super(const ViewState()) {
+    Timer(Duration(milliseconds: 1500), () => _loaded());
   }
 
   void _loaded() {

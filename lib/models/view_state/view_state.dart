@@ -4,9 +4,8 @@ import 'package:flutter/foundation.dart';
 part 'view_state.freezed.dart';
 
 @freezed
-abstract class PageState with _$PageState {
-  const factory PageState({
+abstract class ViewState with _$ViewState {
+  const factory ViewState({
     @Default(true) bool isLoading,
-    @Default(0) int currentIndex,
-  }) = _PageState;
+  }) = _ViewState;
 }

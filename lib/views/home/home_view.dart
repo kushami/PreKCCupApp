@@ -5,8 +5,6 @@ import 'app_bar_column.dart';
 import 'action_menu_card.dart';
 
 class HomeView extends StatelessWidget {
-  HomeView();
-
   Widget _allCards(BuildContext context) {
     final h = MediaQuery.of(context).size.height * 0.01;
     return SingleChildScrollView(
