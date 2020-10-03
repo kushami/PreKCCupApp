@@ -1,7 +1,9 @@
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 // UI
 import 'theme/theme.dart';
@@ -17,6 +19,8 @@ import 'controllers/auth_controller/auth_controller.dart';
 
 // Repositories
 import 'repositories/auth_repository/auth_repository.dart';
+
+FirebaseAnalytics analytics = FirebaseAnalytics();
 
 void main() => runApp(Init());
 
@@ -62,6 +66,9 @@ class MyApp extends StatelessWidget {
       onUnknownRoute: (RouteSettings rs) => MaterialPageRoute(
         builder: (context) => UnderDevelopment(),
       ),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
     );
   }
 }
