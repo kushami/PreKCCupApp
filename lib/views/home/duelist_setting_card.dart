@@ -1,10 +1,9 @@
 import 'package:PreKCCupApp/controllers/d_setting_controller/d_setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 import '../../models/duelist_setting/duelist_setting.dart';
-
-import 'dart:math';
 
 class DuelistSettingCard extends StatelessWidget {
   @override
@@ -21,21 +20,28 @@ class DuelistSettingCard extends StatelessWidget {
                 Text(
                   'Deck Theme',
                 ),
-                Text(
-                  context.select<DuelistSetting, String>((s) => s.myDeckID),
-                ),
-                RaisedButton(
-                  child: Text('set abc'),
-                  onPressed: () => context
-                      .read<DSettingController>()
-                      .setMyDeck(Random().nextInt(120).toString()),
-                  textColor: Theme.of(context).colorScheme.onPrimary,
+                DropdownSearch(
+                  showSearchBox: true,
+                  items: ['カラクリ: KARAKURI', 'BF: BLACKWINGS', '不知火: SHIRANUI'],
+                  selectedItem:
+                      context.select<DuelistSetting, String>((s) => s.myDeckID),
+                  onChanged: (i) =>
+                      context.read<DSettingController>().setMyDeck(i),
                 ),
                 Text(
                   'Skill',
                 ),
-                Text(
-                  context.select<DuelistSetting, String>((s) => s.mySkillID),
+                DropdownSearch(
+                  showSearchBox: true,
+                  items: [
+                    'リスタート: Restart',
+                    '頂に立つ者: Peak Performance',
+                    'レベル上昇: Level Augmentation',
+                  ],
+                  selectedItem: context
+                      .select<DuelistSetting, String>((s) => s.mySkillID),
+                  onChanged: (i) =>
+                      context.read<DSettingController>().setMySkill(i),
                 ),
               ],
             ),
