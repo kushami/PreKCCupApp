@@ -1,8 +1,15 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Admin
     match /{document=**} {
-      allow read, write: if false;
+      allow read, write: if request.auth.uid == 'IPGlhn2qYBdSE2IxVIUrtEElp3Q2';
+    }
+    match /decks/{deck} {
+      allow read: if request.auth.uid != null;    
+    }
+    match /skills/{skill} {
+      allow read: if request.auth.uid != null;    
     }
   }
 }
