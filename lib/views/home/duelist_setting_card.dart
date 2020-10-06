@@ -7,6 +7,8 @@ import '../../models/duelist_setting/duelist_setting.dart';
 import '../../controllers/d_setting_controller/d_setting_controller.dart';
 
 class DuelistSettingCard extends StatelessWidget {
+  final _firestore = FirebaseFirestore.instance;
+
   Future<List<String>> _snapshotToList(Query query, String filter) async {
     var items = <String>[];
     var snapshot = await query.get();
@@ -18,9 +20,8 @@ class DuelistSettingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firestore = FirebaseFirestore.instance;
-    Query decks = firestore.collection('decks');
-    Query skills = firestore.collection('skills');
+    Query decks = _firestore.collection('decks');
+    Query skills = _firestore.collection('skills');
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
